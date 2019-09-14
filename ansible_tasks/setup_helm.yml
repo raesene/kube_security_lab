@@ -1,0 +1,15 @@
+---
+
+  - name: Copy the Helm RBAC into place
+    copy:
+      src: ../helm/helm-rbac-config.yml
+      dest: /root/
+
+  - name: Setup Helm RBAC
+    command: kubectl create -f /root/helm-rbac-config.yml
+
+  - name: Initialize Helm
+    command: helm init --service-account tiller --history-max 200
+
+  - name: update Helm Repo
+    command: helm repo update

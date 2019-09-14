@@ -1,0 +1,33 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up a kind cluster
+  hosts: localhost
+  vars:
+    cluster_name: rwkubeletnoauth
+    # This needs to be the cluster name with -control-plane added 
+    container_name: rwkubeletnoauth-control-plane
+    cluster_config: rwkubelet.yml
+
+  tasks:
+    - name: Start a kind cluster
+      command: kind create cluster --name {{ cluster_name }} --config kubeadm_configs/{{ cluster_config }}
+    - name: Add the host
+      add_host: name={{ container_name }}
+
+  # This needs to be in place for every playbook using kind as we need Python
+- name: install Python in the cluster
+  hosts: rwkubeletnoauth-control-plane
+  connection: docker
+  gather_facts: no
+
+  tasks:
+  - import_tasks: ./ansible_tasks/install_python.yml
+  
+
+- name: Setup Cluster
+  hosts: rwkubeletnoauth-control-plane
+  connection: docker
+
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
+  

@@ -1,0 +1,8 @@
+---
+  - name: Copy SSH Pod Manifest
+    copy:
+      src: ./manifests/sshserver.yml
+      dest: /root
+  
+  - name: Apply SSH Pod manifest
+    command: kubectl create -f /root/sshserver.yml

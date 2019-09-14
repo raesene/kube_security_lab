@@ -1,0 +1,11 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up an alpine containertools image
+  hosts: localhost
+
+
+  tasks:
+    - name: Start up a docker container
+      docker_container:
+        name: client
+        image: raesene/alpine-containertools

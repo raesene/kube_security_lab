@@ -1,0 +1,33 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up a kind cluster
+  hosts: localhost
+  vars:
+    cluster_name: test
+    container_name: test-control-plane
+
+  tasks:
+    - name: Start a kind cluster
+      command: kind create cluster --name {{ cluster_name }}
+    - name: Add the host
+      add_host: name={{ container_name }}
+
+- name: install Python in the cluster
+  hosts: test-control-plane
+  connection: docker
+  gather_facts: no
+
+  tasks:
+    - name: Install Python
+      raw: apt update && apt install -y python
+  
+
+- name: test something in the cluster
+  hosts: test-control-plane
+  connection: docker
+
+  tasks:
+    - name: add nmap
+      apt:
+        name: ['nmap']
+        state: present

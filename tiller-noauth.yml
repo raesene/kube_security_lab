@@ -1,0 +1,36 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up a kind cluster
+  hosts: localhost
+  vars:
+    cluster_name: tillernoauth
+    # This needs to be the cluster name with -control-plane added 
+    container_name: tillernoauth-control-plane
+
+  tasks:
+    - name: Start a kind cluster
+      command: kind create cluster --name {{ cluster_name }}
+    - name: Add the host
+      add_host: name={{ container_name }}
+
+  # This needs to be in place for every playbook using kind as we need Python
+- name: install Python in the cluster
+  hosts: tillernoauth-control-plane
+  connection: docker
+  gather_facts: no
+
+  tasks:
+  - import_tasks: ./ansible_tasks/install_python.yml
+  
+
+- name: Setup Cluster
+  hosts: tillernoauth-control-plane
+  connection: docker
+
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
+  - import_tasks: ./ansible_tasks/install_helm.yml
+  - import_tasks: ./ansible_tasks/setup_helm.yml
+    
+  - name: Expose Tiller via NodePort
+    command: kubectl patch svc tiller-deploy -n kube-system --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
