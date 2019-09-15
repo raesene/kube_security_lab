@@ -1,0 +1,8 @@
+---
+  - name: Copy SSRF Deployment Manifest
+    copy:
+      src: ./manifests/ssrfdeployment.yml
+      dest: /root
+  
+  - name: Apply SSRF Deployment manifest
+    command: kubectl create -f /root/ssrfdeployment.yml
