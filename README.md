@@ -56,9 +56,3 @@ and
 docker stop client
 ```
 
-## TODO
-
-- Automate bringing up the whole environment with a single script
-- Automate ensuring dependencies are present (run from a Docker container?)
-- Expand the selection of playbooks available
-- Improve the playbook design to remove duplication.
