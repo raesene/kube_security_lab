@@ -7,7 +7,7 @@ This cluster has an exposed SSH service running on port 32001/TCP to a pod in th
 Then get a note of the IP address of the Kubernetes cluster with 
 
 ```
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sshcm-control-plane
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sshcpe-control-plane
 ```
 
 Connect to your client container
