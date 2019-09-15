@@ -40,7 +40,7 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 
 Each of these can be used to try out various techniques for attacking Kubernetes clusters.  In general the goal of each exercise should be to get access to the `/etc/kubernetes/pki/ca.key` file as that's a "golden key" to persistent cluster access.
 
-There will be walkthroughs for each cluster in the `walkthroughs` directory
+For each cluster the place to start is in the `Scenario Setups` which has details of how to get started.  Then if you want some information on one possible solution look in the `Scenario Walkthroughs` folder
 
 ## Cleanup
 
