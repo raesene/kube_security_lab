@@ -1,6 +1,6 @@
 ## SSH to Create Pod - Hard
 
-This cluster has an exposed SSH service running on port 32001/TCP to a pod in the cluster with cluster-admin rights.  To test this run
+This cluster has an exposed SSH service running on port 32001/TCP to a pod in the cluster with rights to create pods in the default namespace.  To test this run
 
 - `ansible-playbook ssh-to-create-pods-hard.yml`
 

@@ -34,6 +34,7 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 - `ssh-to-cluster-master.yml` - Access to a running pod with a service account which has cluster-admin rights.
 - `ssh-to-create-pods-easy.yml` - Access to a running pod with a service account which has rights to manage pods.
 - `ssh-to-create-pods-hard.yml` - Access to a running pod with a service account which has rights to create pods.
+- `ssh-to-get-secrets.yml` - Access to a running pod with a service account which has cluster level rights to get secrets. 
 - `tiller-noauth.yml` - Tiller service configured without authentication.
 - `unauth-api-server.yml` - API Server with anonymous access possible to sensitive paths.
 
