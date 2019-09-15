@@ -15,7 +15,7 @@ Connect to your client container
 docker exec -it client /bin/ash
 ```
 
-At this point you should be able to reach the kubelet port on the vulnerable cluster.  Check with
+At this point you should be able to reach the etcd port on the vulnerable cluster.  Check with
 
 ```
 nmap -sT -v -n -p2379 [CLUSTERIP]
