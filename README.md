@@ -22,7 +22,7 @@ There's a client machine with tools for Kubernetes security testing which can be
 
 Once you've run the playbook, you can connect to the client machine with 
 
-`docker exec -it client /bin/ash`
+`docker exec -it client /bin/bash`
 
 ## Vulnerable Clusters
 
@@ -35,6 +35,7 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 - `ssh-to-create-pods-easy.yml` - Access to a running pod with a service account which has rights to manage pods.
 - `ssh-to-create-pods-hard.yml` - Access to a running pod with a service account which has rights to create pods.
 - `tiller-noauth.yml` - Tiller service configured without authentication.
+- `unauth-api-server.yml` - API Server with anonymous access possible to sensitive paths.
 
 ## Using the clusters
 

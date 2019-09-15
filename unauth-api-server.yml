@@ -1,0 +1,34 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up a kind cluster
+  hosts: localhost
+  vars:
+    cluster_name: apiservernoauth
+    # This needs to be the cluster name with -control-plane added 
+    container_name: apiservernoauth-control-plane
+
+  tasks:
+    - name: Start a kind cluster
+      command: kind create cluster --name {{ cluster_name }}
+    - name: Add the host
+      add_host: name={{ container_name }}
+
+  # This needs to be in place for every playbook using kind as we need Python
+- name: install Python in the cluster
+  hosts: apiservernoauth-control-plane
+  connection: docker
+  gather_facts: no
+
+  tasks:
+  - import_tasks: ./ansible_tasks/install_python.yml
+  
+
+- name: Setup Cluster
+  hosts: apiservernoauth-control-plane
+  connection: docker
+
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
+    
+  - name: cluster-admin Unauthenticated
+    command: kubectl create clusterrolebinding unauth-cluster-admin --clusterrole=cluster-admin --group=system:unauthenticated

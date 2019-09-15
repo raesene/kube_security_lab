@@ -13,7 +13,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ssh
 Connect to your client container
 
 ```
-docker exec -it client /bin/ash
+docker exec -it client /bin/bash
 ```
 
 and from there

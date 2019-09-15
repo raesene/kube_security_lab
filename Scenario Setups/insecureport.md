@@ -12,7 +12,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ins
 Connect to your client container
 
 ```
-docker exec -it client /bin/ash
+docker exec -it client /bin/bash
 ```
 
 At this point you should be able to reach the Insecure API port on the vulnerable cluster.  Check with

@@ -12,7 +12,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' etc
 Connect to your client container
 
 ```
-docker exec -it client /bin/ash
+docker exec -it client /bin/bash
 ```
 
 At this point you should be able to reach the etcd port on the vulnerable cluster.  Check with
