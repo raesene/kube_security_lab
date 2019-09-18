@@ -22,7 +22,7 @@ There's a client machine with tools for Kubernetes security testing which can be
 
 Once you've run the playbook, you can connect to the client machine with 
 
-`docker exec -it client /bin/bash`
+`docker exec -it client /bin/ash`
 
 ## Vulnerable Clusters
 
