@@ -1,0 +1,26 @@
+# This is a manifest which will deploy a privileged pod to a single node
+# once running connect to it with a shell and run choot /host
+# For root access to the underlying node
+apiVersion: v1
+kind: Pod
+metadata:
+  name: noderootpod
+  labels:
+spec:
+  hostNetwork: true
+  hostPID: true
+  hostIPC: true
+  containers:
+  - name: noderootpod
+    image: busybox
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /host
+      name: noderoot
+    command: [ "/bin/sh", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
+  volumes:
+  - name: noderoot
+    hostPath:
+      path: /

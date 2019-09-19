@@ -1,0 +1,22 @@
+# This Pod is designed to dump the ca.key file to pod logs.
+# It will only work if deployed to a master node in kubeadm (or other cluster that places the key there)
+# Adapt as needed
+apiVersion: v1
+kind: Pod
+metadata:
+  name: keydumper-pod
+  labels:
+    app: keydumper
+spec:
+  containers:
+  - name: keydumper-pod
+    image: busybox
+    volumeMounts:
+    - mountPath: /pki
+      name: keyvolume
+    command: ['cat', '/pki/ca.key']
+  volumes:
+  - name: keyvolume
+    hostPath:
+      path: /etc/kubernetes/pki
+      type: Directory
