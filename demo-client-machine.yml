@@ -1,0 +1,46 @@
+#!/usr/bin/env ansible-playbook
+# This is a demo client. Run this playbook after running the demo-cluster to get a client with
+# a kubeconfig file with access to the demo cluster
+---
+- name: Start up an alpine containertools image
+  hosts: localhost
+
+
+  tasks:
+    - name: Start up a docker container
+      docker_container:
+        name: demo-client
+        image: raesene/alpine-containertools
+    - name: add the host
+      add_host: name=demo-client
+
+- name: install Python in the cluster
+  hosts: demo-client
+  connection: docker
+  gather_facts: no
+
+  tasks:
+    - name: Install Python
+      raw: apk update && apk add python
+  
+- name: Configure the demo client
+  hosts: demo-client
+  connection: docker
+
+  tasks:
+    - name: Create the .kube directory
+      file:
+        path: /root/.kube
+        state: directory
+        
+    - name: Copy the Kubeconfig file
+      copy:
+        src: /tmp/demo-kubernetes-admin.conf
+        dest: /root/.kube/config        
+
+
+
+
+
+
+

@@ -3,10 +3,10 @@
 - name: Start up a kind cluster
   hosts: localhost
   vars:
-    cluster_name: rwkubeletnoauth
+    cluster_name: demo
     # This needs to be the cluster name with -control-plane added 
-    container_name: rwkubeletnoauth-control-plane
-    cluster_config: rwkubelet.yml
+    container_name: demo-control-plane
+    cluster_config: demo.yml
 
   tasks:
     - name: Start a kind cluster
@@ -16,7 +16,7 @@
 
   # This needs to be in place for every playbook using kind as we need Python
 - name: install Python in the cluster
-  hosts: rwkubeletnoauth-control-plane
+  hosts: demo-control-plane
   connection: docker
   gather_facts: no
 
@@ -25,10 +25,15 @@
   
 
 - name: Setup Cluster
-  hosts: rwkubeletnoauth-control-plane
+  hosts: demo-control-plane
   connection: docker
 
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
   - name: make the default service account cluster-admin
     command: kubectl --kubeconfig=/etc/kubernetes/admin.conf create clusterrolebinding serviceaccounts-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts
+  - name: Get the kubeconfig file for the client
+    fetch:
+      src: /etc/kubernetes/admin.conf
+      dest: /tmp/demo-kubernetes-admin.conf
+      flat: yes
