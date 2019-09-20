@@ -36,7 +36,12 @@
     - name: Copy the Kubeconfig file
       copy:
         src: /tmp/demo-kubernetes-admin.conf
-        dest: /root/.kube/config        
+        dest: /root/.kube/config
+
+    - name: Set the bash prompt
+      copy:
+        src: client_files/democlientbashrc
+        dest: /root/.bashrc        
 
 
 

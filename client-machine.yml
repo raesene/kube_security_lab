@@ -9,3 +9,24 @@
       docker_container:
         name: client
         image: raesene/alpine-containertools
+    - name: add the host
+      add_host: name=client
+
+- name: install Python in the cluster
+  hosts: client
+  connection: docker
+  gather_facts: no
+
+  tasks:
+    - name: Install Python
+      raw: apk update && apk add python
+  
+- name: Configure the demo client
+  hosts: client
+  connection: docker
+
+  tasks:
+    - name: Set the bash prompt
+      copy:
+        src: client_files/clientbashrc
+        dest: /root/.bashrc
