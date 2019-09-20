@@ -10,7 +10,7 @@ Before starting you'll need to install
 
  - Docker
  - Ansible
-   - Also install the docker python module (e.g. `pip install docker`)
+   - Also install the docker python module (e.g. `pip install docker-py`)
  - Kind - Install guide [here](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 
