@@ -6,7 +6,7 @@
     cluster_name: ssrfinsecureport
     # This needs to be the cluster name with -control-plane added 
     container_name: ssrfinsecureport-control-plane
-    cluster_config: insecureport.yml
+    cluster_config: localinsecureport.yml
 
   tasks:
     - name: Start a kind cluster
@@ -31,5 +31,7 @@
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
   - import_tasks: ./ansible_tasks/setup_ssrf_pod.yml
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml
+
 
   

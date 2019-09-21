@@ -30,4 +30,5 @@
 
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml
   

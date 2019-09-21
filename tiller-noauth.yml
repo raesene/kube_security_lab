@@ -34,3 +34,5 @@
     
   - name: Expose Tiller via NodePort
     command: kubectl patch svc tiller-deploy -n kube-system --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
+  
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml

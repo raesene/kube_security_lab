@@ -1,0 +1,4 @@
+---
+  - name: Print the Cluster IP address
+    debug: 
+      msg: "The Cluster IP address is {{ ansible_default_ipv4.address }} "

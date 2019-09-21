@@ -12,6 +12,7 @@ spec:
       labels:
         run: ssrf
     spec:
+      hostNetwork: true
       containers:
       - name: ssrf
         image: raesene/ssrftester

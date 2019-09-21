@@ -37,3 +37,4 @@
       src: /etc/kubernetes/admin.conf
       dest: /tmp/demo-kubernetes-admin.conf
       flat: yes
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml

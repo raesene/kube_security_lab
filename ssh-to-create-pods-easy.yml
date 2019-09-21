@@ -41,3 +41,5 @@
 
   - name: Give the default service account rights to manage pods
     command: kubectl create rolebinding serviceaccounts-pod-manager --role=pod-manager --group=system:serviceaccounts
+
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml

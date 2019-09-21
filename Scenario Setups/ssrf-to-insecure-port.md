@@ -13,7 +13,9 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ssh
 At this point, if you're running on a Linux host, you should be able to connect to the web application on the Docker network at
 
 ```
-http://[CLUSTERIP]:32001/
+http://127.0.0.1:32001/
 ```
 
 The username is `ssrftester` and the password is `ssrftester`
+
+The insecure port is only availble on 127.0.0.1, but the other cluster services (inc. API server) should be available on the clusterip

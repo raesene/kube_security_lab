@@ -32,3 +32,5 @@
     
   - name: cluster-admin Unauthenticated
     command: kubectl create clusterrolebinding unauth-cluster-admin --clusterrole=cluster-admin --group=system:unauthenticated
+
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml
