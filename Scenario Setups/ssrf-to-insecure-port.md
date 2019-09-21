@@ -13,7 +13,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ssh
 At this point, if you're running on a Linux host, you should be able to connect to the web application on the Docker network at
 
 ```
-http://127.0.0.1:32001/
+http://[CLUSTERIP]:32001/
 ```
 
 The username is `ssrftester` and the password is `ssrftester`
