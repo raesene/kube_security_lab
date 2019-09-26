@@ -7,7 +7,7 @@ This cluster has an exposed web application which is vulnerable to SSRF.  Start 
 Then get a note of the IP address of the Kubernetes cluster with 
 
 ```
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sshgs-control-plane
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ssrfinsecureport-control-plane
 ```
 
 At this point, if you're running on a Linux host, you should be able to connect to the web application on the Docker network at
