@@ -31,4 +31,5 @@
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
   - import_tasks: ./ansible_tasks/print_cluster_ip.yml
-  
+  - name: make the default service account cluster-admin
+    command: kubectl --kubeconfig=/etc/kubernetes/admin.conf create clusterrolebinding serviceaccounts-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts

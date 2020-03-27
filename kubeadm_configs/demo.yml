@@ -9,11 +9,6 @@ kubeadmConfigPatches:
   kind: ClusterConfiguration
   metadata:
     name: config
-  apiServer:
-    extraArgs:
-      # Don't forget quotes on the values
-      insecure-bind-address: "0.0.0.0"
-      insecure-port: "8080"
   etcd:
     local:
       extraArgs:
