@@ -17,4 +17,4 @@ kubeadmConfigPatches:
 nodes:
 # the control plane node config
 - role: control-plane
-
+  image: kindest/node:v1.15.7
