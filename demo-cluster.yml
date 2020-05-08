@@ -9,10 +9,7 @@
     cluster_config: demo.yml
 
   tasks:
-    - name: Start a kind cluster
-      command: kind create cluster --name {{ cluster_name }} --config kubeadm_configs/{{ cluster_config }}
-    - name: Add the host
-      add_host: name={{ container_name }}
+  - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml
 
   # This needs to be in place for every playbook using kind as we need Python
 - name: install Python in the cluster
@@ -21,7 +18,7 @@
   gather_facts: no
 
   tasks:
-  - import_tasks: ./ansible_tasks/install_python.yml
+  - import_tasks: ./ansible_tasks/install_python3_raw.yml
   
 
 - name: Setup Cluster
@@ -30,8 +27,7 @@
 
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
-  - name: make the default service account cluster-admin
-    command: kubectl --kubeconfig=/etc/kubernetes/admin.conf create clusterrolebinding serviceaccounts-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts
+  - import_tasks: ./ansible_tasks/make_default_service_account_cluster_admin.yaml
   - name: Get the kubeconfig file for the client
     fetch:
       src: /etc/kubernetes/admin.conf

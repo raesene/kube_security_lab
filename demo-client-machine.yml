@@ -20,8 +20,7 @@
   gather_facts: no
 
   tasks:
-    - name: Install Python
-      raw: apk update && apk add python
+  - import_tasks: ./ansible_tasks/install_python3_alpine_raw.yml
   
 - name: Configure the demo client
   hosts: demo-client
