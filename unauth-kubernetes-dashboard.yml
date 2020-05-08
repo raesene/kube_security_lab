@@ -1,0 +1,41 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up a kind cluster
+  hosts: localhost
+  vars:
+    cluster_name: kubedash
+    # This needs to be the cluster name with -control-plane added 
+    container_name: kubedash-control-plane
+
+  tasks:
+    - name: Start a kind cluster
+      command: kind create cluster --name {{ cluster_name }}
+    - name: Add the host
+      add_host: name={{ container_name }}
+
+  # This needs to be in place for every playbook using kind as we need Python
+- name: install Python in the cluster
+  hosts: kubedash-control-plane
+  connection: docker
+  gather_facts: no
+
+  tasks:
+  - import_tasks: ./ansible_tasks/install_python.yml
+  
+
+- name: Setup Cluster
+  hosts: kubedash-control-plane
+  connection: docker
+
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml
+
+  - name: Copy Kubernetes Dasboard manifest
+    copy:
+      src: ./manifests/kubernetes-dashboard.yaml
+      dest: /
+      mode: 0700
+  
+  - name: Apply Kuberntes Dashboard Manifest
+    command: kubectl create -f ./kubernetes-dashboard.yaml

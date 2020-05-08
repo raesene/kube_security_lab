@@ -10,9 +10,10 @@ Before starting you'll need to install
 
  - Docker
  - Ansible
-   - Also install the docker python module (e.g. `pip install docker-py` or `pip install docker`)
+   - Also install the docker python module (e.g. `pip3 install docker-py` or `pip3 install docker`)
  - Kind - Install guide [here](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
+If you're running Ubuntu, you can use the `install_ansible_ubuntu.sh` file to do the ansible setup.
 
 ## Client Machine
 
@@ -38,6 +39,7 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 - `ssrf-to-insecure-port.yml` - This cluster has a web application with an SSRF vulnerability in it, which can be exploited to target the insecure port.
 - `tiller-noauth.yml` - Tiller service configured without authentication.
 - `unauth-api-server.yml` - API Server with anonymous access possible to sensitive paths.
+- `unauth-kubernetes-dashboard.yml` - Cluster with the Kubernetes Dashboard installed and available without authentication.
 
 ## Using the clusters
 
