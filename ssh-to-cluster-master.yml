@@ -8,11 +8,7 @@
     container_name: sshcm-control-plane
 
   tasks:
-    - name: Start a kind cluster
-      command: kind create cluster --name {{ cluster_name }}
-    - name: Add the host
-      add_host: name={{ container_name }}
-
+  - import_tasks: ./ansible_tasks/setup_kind_standard_config.yaml
   # This needs to be in place for every playbook using kind as we need Python
 - name: install Python in the cluster
   hosts: sshcm-control-plane
@@ -20,7 +16,7 @@
   gather_facts: no
 
   tasks:
-  - import_tasks: ./ansible_tasks/install_python.yml
+  - import_tasks: ./ansible_tasks/install_python3_raw.yml
   
 
 - name: Setup Cluster
@@ -30,8 +26,5 @@
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
   - import_tasks: ./ansible_tasks/setup_ssh_pod.yml
-
-  - name: make the default service account cluster-admin
-    command: kubectl --kubeconfig=/etc/kubernetes/admin.conf create clusterrolebinding serviceaccounts-cluster-admin --clusterrole=cluster-admin --group=system:serviceaccounts
-
+  - import_tasks: ./ansible_tasks/make_default_service_account_cluster_admin.yaml 
   - import_tasks: ./ansible_tasks/print_cluster_ip.yml

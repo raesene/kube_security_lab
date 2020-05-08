@@ -1,0 +1,3 @@
+---
+  - name: Install Python
+    raw: apk update && apk add python3

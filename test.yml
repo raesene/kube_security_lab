@@ -3,23 +3,19 @@
 - name: Start up a kind cluster
   hosts: localhost
   vars:
-    cluster_name: test
-    container_name: test-control-plane
+    cluster_name: testcluster
+    container_name: testcluster-control-plane
 
   tasks:
-    - name: Start a kind cluster
-      command: kind create cluster --name {{ cluster_name }}
-    - name: Add the host
-      add_host: name={{ container_name }}
+   - import_tasks: ./ansible_tasks/setup_kind_standard_config.yaml
 
 - name: install Python in the cluster
-  hosts: test-control-plane
+  hosts: testcluster-control-plane
   connection: docker
   gather_facts: no
 
   tasks:
-    - name: Install Python
-      raw: apt update && apt install -y python
+  - import_tasks: ./ansible_tasks/install_python3_raw.yml
   
 
 - name: test something in the cluster

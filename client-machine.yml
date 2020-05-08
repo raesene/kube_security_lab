@@ -18,15 +18,14 @@
   gather_facts: no
 
   tasks:
-    - name: Install Python
-      raw: apk update && apk add python
+  - import_tasks: ./ansible_tasks/install_python3_alpine_raw.yml
   
 - name: Configure the demo client
   hosts: client
   connection: docker
 
   tasks:
-    - name: Set the bash prompt
-      copy:
-        src: client_files/clientbashrc
-        dest: /root/.bashrc
+  - name: Set the bash prompt
+    copy:
+      src: client_files/clientbashrc
+      dest: /root/.bashrc
