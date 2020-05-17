@@ -7,18 +7,10 @@
     # This needs to be the cluster name with -control-plane added 
     container_name: etcdnoauth-control-plane
     cluster_config: etcd-noauth.yml
+    kubernetes_version: v1.18.2
 
   tasks:
   - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml
-
-  # This needs to be in place for every playbook using kind as we need Python
-- name: install Python in the cluster
-  hosts: etcdnoauth-control-plane
-  connection: docker
-  gather_facts: no
-
-  tasks:
-  - import_tasks: ./ansible_tasks/install_python3_raw.yml
   
 
 - name: Setup Cluster

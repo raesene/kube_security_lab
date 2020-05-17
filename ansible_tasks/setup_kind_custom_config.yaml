@@ -1,5 +1,5 @@
 ---
   - name: Start a kind cluster
-    command: kind create cluster --name {{ cluster_name }} --config kubeadm_configs/{{ cluster_config }}
+    command: kind create cluster --image=raesene/customkind:{{kubernetes_version}} --name {{ cluster_name }} --config kubeadm_configs/{{ cluster_config }}
   - name: Add the host
     add_host: name={{ container_name }}

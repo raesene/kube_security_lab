@@ -5,18 +5,10 @@
   vars:
     cluster_name: testcluster
     container_name: testcluster-control-plane
+    kubernetes_version: v1.18.2
 
   tasks:
    - import_tasks: ./ansible_tasks/setup_kind_standard_config.yaml
-
-- name: install Python in the cluster
-  hosts: testcluster-control-plane
-  connection: docker
-  gather_facts: no
-
-  tasks:
-  - import_tasks: ./ansible_tasks/install_python3_raw.yml
-  
 
 - name: test something in the cluster
   hosts: test-control-plane
