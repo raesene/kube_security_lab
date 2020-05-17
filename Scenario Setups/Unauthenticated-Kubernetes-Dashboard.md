@@ -10,4 +10,4 @@ Then get a note of the IP address of the Kubernetes cluster with
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kubedash-control-plane
 ```
 
-Then in a browser navigate to https://[IP]:31337 and you can use the "Skip" option available on the login page.
+Then in a browser navigate to https://[IP]:31337 and bypass the inevitable certificate warnings, to get started.

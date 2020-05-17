@@ -9,6 +9,8 @@
       docker_container:
         name: client
         image: raesene/alpine-containertools
+        networks:
+          - name: kind
     - name: add the host
       add_host: name=client
 
