@@ -10,14 +10,14 @@ Before starting you'll need to install
 
  - Docker
  - Ansible
-   - Also install the docker python module (e.g. `pip3 install docker-py` or `pip3 install docker`)
+   - Also install the docker python module (e.g. `pip install docker` or `pip3 install docker`)
  - Kind 0.8.0+ - Install guide [here](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 If you're running Ubuntu 18.04, you can use the `install_ansible_ubuntu.sh` file to do the ansible setup. If you're running Ubuntu 20.04 then you can just get ansible from apt.
 
 ## Client Machine
 
-There's a client machine with tools for Kubernetes security testing which can be brought up with the `client-machine.yml` playbook. It's best to use this client machine for all CLI tasks when running the scenarios, so you don't accidentaly pick up creds from the host.
+There's a client machine with tools for Kubernetes security testing which can be brought up with the `client-machine.yml` playbook. It's best to use this client machine for all CLI tasks when running the scenarios, so you don't accidentaly pick up creds from the host, but remember to start the kind cluster before the client machine, or the Docker network to connect to, may not be available.
 
 - `ansible-playbook client-machine.yml` 
 
