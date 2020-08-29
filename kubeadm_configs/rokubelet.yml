@@ -1,0 +1,19 @@
+
+# this config file contains all config fields with comments
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha3
+# patch the generated kubeadm config with some extra settings
+kubeadmConfigPatches:
+- |
+  apiVersion: kubeadm.k8s.io/v1beta2
+  kind: InitConfiguration
+  metadata:
+    name: config
+  nodeRegistration:
+    kubeletExtraArgs:
+      # These two allow for unauthenticated kubelet access
+      read-only-port: "10255"
+# 1 control plane node and 3 workers
+nodes:
+# the control plane node config
+- role: control-plane

@@ -1,0 +1,21 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up a kind cluster
+  hosts: localhost
+  vars:
+    cluster_name: rokubeletnoauth
+    # This needs to be the cluster name with -control-plane added 
+    container_name: rokubeletnoauth-control-plane
+    cluster_config: rokubelet.yml
+    kubernetes_version: v1.18.2
+
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml 
+
+- name: Setup Cluster
+  hosts: rokubeletnoauth-control-plane
+  connection: docker
+
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml
