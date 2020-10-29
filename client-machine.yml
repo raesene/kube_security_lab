@@ -18,6 +18,8 @@
   hosts: client
   connection: docker
   gather_facts: no
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
   - import_tasks: ./ansible_tasks/install_python3_alpine_raw.yml
@@ -25,7 +27,9 @@
 - name: Configure the demo client
   hosts: client
   connection: docker
-
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    
   tasks:
   - name: Set the bash prompt
     copy:
