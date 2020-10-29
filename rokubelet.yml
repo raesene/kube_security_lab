@@ -15,6 +15,8 @@
 - name: Setup Cluster
   hosts: rokubeletnoauth-control-plane
   connection: docker
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml

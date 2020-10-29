@@ -15,7 +15,9 @@
 - name: Setup Cluster
   hosts: sshcpe-control-plane
   connection: docker
-
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
   - import_tasks: ./ansible_tasks/setup_ssh_pod.yml
