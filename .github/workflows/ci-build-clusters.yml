@@ -36,6 +36,26 @@ jobs:
         run: ansible-playbook ssh-to-cluster-master.yml
       - name: remove ssh to cluster master cluster
         run: kind delete cluster --name=sshcm
+      - name: build ssh to create daemonsets
+        run: ansible-playbook ssh-to-create-daemonsets-hard.yml
+      - name: remove ssh to create daemonsets
+        run: kind delete cluster --name=sshcdh
+      - name: build ssh to create pods easy
+        run: ansible-playbook ssh-to-create-pods-easy.yml
+      - name: remove ssh to create pods easy
+        run: kind delete cluster --name=sshcpe
+      - name: build ssh to create pods hard
+        run: ansible-playbook ssh-to-create-pods-hard.yml
+      - name: remove ssh to create pods hard
+        run: kind delete cluster --name=sshcph
+      - name: build ssh to get secrets
+        run: ansible-playbook ssh-to-get-secrets.yml
+      - name: remove ssh to get secrets
+        run: kind delete cluster --name=sshgs
+      - name: build ssrf to insecure port
+        run: ansible-playbook ssrf-to-insecure-port.yml
+      - name: remove ssrf to insecure port
+        run: kind delete cluster --name=ssrfinsecureport
 
   build_1804:
     runs-on: ubuntu-18.04
