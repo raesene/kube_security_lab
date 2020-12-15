@@ -23,4 +23,4 @@ jobs:
       - name: Setup Ansible on 18.04
         run: ./install_ansible_ubuntu.sh
       - name: Build Insecure API cluster on 18.04
-        run: ansible-playbooks insecure-port.yml
+        run: ansible-playbook insecure-port.yml
