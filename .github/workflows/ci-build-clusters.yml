@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  2004_build:
+  build_2004:
     runs-on: ubuntu-20.04
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       - name: Build Insecure API cluster on 20.04
         run: ansible-playbook insecure-port.yml
 
-  1804_build:
+  buils_1804:
     runs-on: ubuntu-18.04
 
     steps:
