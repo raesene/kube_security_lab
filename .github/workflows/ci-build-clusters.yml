@@ -12,15 +12,33 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: build client container
+        run: ansible-playbook client-machine.yml
       - name: Build Insecure API cluster on 20.04
         run: ansible-playbook insecure-port.yml
+      - name: remove insecure API kind cluster
+        run: kind delete cluster --name=insecureport
+      - name: Build etcd No Auth cluster 
+        run: ansible-playbook etcd-noauth.yml
+      - name: remove etcd no auth cluster
+        run: kind delete cluster --name=etcdnoauth
+      - name: build ro kubelet cluster
+        run: ansible-playbook rokubelet.yml
+      - name: remove ro kubelet cluster
+        run: kind delete cluster --name=rokubeletnoauth
+      - name: build rw kubelet cluster
+        run: ansible-playbook rwkubelet-noauth.yml
+      - name: remove rw kubelet cluster
+        run: kind delete cluster --name=rwkubeletnoauth
+      - name: build ssh to cluster master cluster
+        run: ansible-playbook ssh-to-cluster-master.yml
+      - name: remove ssh to cluster master cluster
+        run: kind delete cluster --name=sshcm
 
   build_1804:
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Ansible on 18.04
+      - name: Setup Ansible on 18.04 to make sure it works
         run: ./install_ansible_ubuntu.sh
-      - name: Build Insecure API cluster on 18.04
-        run: ansible-playbook insecure-port.yml
