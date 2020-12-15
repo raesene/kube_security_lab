@@ -7,10 +7,18 @@ on:
 
 
 jobs:
-  build:
+  2004_build:
     runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build Insecure API cluster
+      - name: Build Insecure API cluster on 20.04
         run: ansible-playbook insecure-port.yml
+
+  1804_build:
+    runs_on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Insecure API cluster on 18.04
+        run: ansible-playbooks insecure-port.yml
