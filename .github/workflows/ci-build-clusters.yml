@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: get the docker python lib
+        run: pip install docker
       - name: build client container
         run: ansible-playbook client-machine.yml
       - name: Build Insecure API cluster on 20.04
