@@ -1,7 +1,7 @@
 ---
   - name: Helm Files
     get_url:
-      url: https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz
+      url: https://get.helm.sh/helm-v2.16.11-linux-amd64.tar.gz
       dest: /tmp/helm.tar.gz
 
   - name: unzip Helm
