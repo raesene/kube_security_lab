@@ -60,7 +60,10 @@ jobs:
         run: ansible-playbook tiller-noauth.yml
       - name: remove tiller noauth
         run: kind delete cluster --name=tillernoauth
-      
+      - name: build ssh to create pod multi node
+        run: ansible-playbook ssh-to-create-pods-multi-node.yml
+      - name: remove ssh to create pod multi node
+        run: kind delete cluster --name=sshcpmn
 
   build_1804:
     runs-on: ubuntu-18.04

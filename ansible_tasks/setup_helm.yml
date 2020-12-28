@@ -9,7 +9,7 @@
     command: kubectl create -f /root/helm-rbac-config.yml
 
   - name: Initialize Helm
-    command: helm init --service-account tiller --history-max 200
+    command: helm init --service-account tiller --history-max 200 --stable-repo-url https://charts.helm.sh/stable
 
   - name: update Helm Repo
     command: helm repo update
