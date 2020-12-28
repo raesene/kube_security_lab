@@ -1,0 +1,43 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: Start up a kind cluster
+  hosts: localhost
+  vars:
+    cluster_name: sshcpmn
+    # This needs to be the cluster name with -control-plane added 
+    container_name: sshcpmn-control-plane
+    cluster_config: multi-node-cluster.yml
+    kubernetes_version: v1.18.2
+
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml
+
+
+- name: Setup Cluster
+  hosts: sshcpmn-control-plane
+  connection: docker
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    
+  tasks:
+  - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
+  - import_tasks: ./ansible_tasks/setup_ssh_pod.yml
+    
+  - name: Copy Role Manifest
+    copy: 
+      src: ./manifests/pod-manager.yml
+      dest: /root
+
+  - name: Apply Role Manifest
+    command: kubectl create -f /root/pod-manager.yml
+
+  - name: Give the default service account rights to manage pods
+    command: kubectl create rolebinding serviceaccounts-pod-manager --role=pod-manager --group=system:serviceaccounts
+
+  - name: Create a clusterrole for reading nodes
+    command: kubectl create clusterrole node-reader --verb=get,list --resource=nodes
+
+  - name: Give the default service account rights to get nodes
+    command: kubectl create clusterrolebinding serviceaccounts-read-nodes --clusterrole=node-reader --group=system:serviceaccounts
+
+  - import_tasks: ./ansible_tasks/print_cluster_ip.yml
