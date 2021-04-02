@@ -9,6 +9,7 @@
       apt:
         name: python3-docker
         state: present
+      become: yes
     - name: Start up a docker container
       docker_container:
         name: client
