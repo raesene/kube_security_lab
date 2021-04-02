@@ -14,10 +14,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: get the docker python lib
         run: sudo apt update && sudo apt install -y python3-docker
-      - name: Build Insecure API cluster
-        run: ansible-playbook insecure-port.yml
       - name: build client container
         run: ansible-playbook client-machine.yml
+      - name: Build Insecure API cluster
+        run: ansible-playbook insecure-port.yml
       - name: remove insecure API kind cluster
         run: kind delete cluster --name=insecureport
       - name: Build etcd No Auth cluster 
