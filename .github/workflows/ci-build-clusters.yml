@@ -17,7 +17,7 @@ jobs:
       - name: Build Insecure API cluster
         run: ansible-playbook insecure-port.yml
       - name: build client container
-        run: pip install docker && ansible-playbook client-machine.yml
+        run: ansible-playbook client-machine.yml
       - name: remove insecure API kind cluster
         run: kind delete cluster --name=insecureport
       - name: Build etcd No Auth cluster 

@@ -5,6 +5,10 @@
 
 
   tasks:
+    - name: Install docker module
+      apt:
+        name: python3-docker
+        state: present
     - name: Start up a docker container
       docker_container:
         name: client
