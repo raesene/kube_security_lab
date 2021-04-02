@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Client machine Test
-        run: pip install docker && pipx inject docker && ansible-playbook client-machine.yml
       - name: Build Insecure API cluster
         run: ansible-playbook insecure-port.yml
       - name: remove insecure API kind cluster
