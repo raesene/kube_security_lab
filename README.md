@@ -8,20 +8,20 @@ To get the flexibility to set-up the various vulnerable clusters we're using [An
 
 Before starting you'll need to install
 
- - Docker
- - Ansible
-   - Also install the docker python module (e.g. `pip install docker` or `pip3 install docker`)
- - Kind 0.8.0+ - Install guide [here](https://kind.sigs.k8s.io/docs/user/quick-start/)
+- Docker
+- Ansible
+  - Also install the docker python module (e.g. `pip install docker` or `pip3 install docker`)
+- Kind 0.8.0+ - Install guide [here](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 If you're running Ubuntu 18.04, you can use the `install_ansible_ubuntu.sh` file to do the ansible setup. If you're running Ubuntu 20.04 then you can just get ansible from apt.
 
 ## Client Machine
 
-There's a client machine with tools for Kubernetes security testing which can be brought up with the `client-machine.yml` playbook. It's best to use this client machine for all CLI tasks when running the scenarios, so you don't accidentaly pick up creds from the host, but remember to start the kind cluster before the client machine, or the Docker network to connect to, may not be available.
+There's a client machine with tools for Kubernetes security testing which can be brought up with the `client-machine.yml` playbook. It's best to use this client machine for all CLI tasks when running the scenarios, so you don't accidentally pick up creds from the host, but remember to start the kind cluster before the client machine, or the Docker network to connect to, may not be available.
 
-- `ansible-playbook client-machine.yml` 
+- `ansible-playbook client-machine.yml`
 
-Once you've run the playbook, you can connect to the client machine with 
+Once you've run the playbook, you can connect to the client machine with:-
 
 `docker exec -it client /bin/bash`
 
@@ -33,11 +33,14 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 
 - `etcd-noauth.yml` - ETCD Server available without authentication
 - `insecure-port.yml` - Kubernetes API Server Insecure Port available
+- `rokubelet.yml`
 - `rwkubelet-noauth.yml` - Kubelet Read-Write Port available without authentication
 - `ssh-to-cluster-master.yml` - Access to a running pod with a service account which has cluster-admin rights.
+- `ssh-to-create-daemonsets-hard.yml`
 - `ssh-to-create-pods-easy.yml` - Access to a running pod with a service account which has rights to manage pods.
 - `ssh-to-create-pods-hard.yml` - Access to a running pod with a service account which has rights to create pods.
-- `ssh-to-get-secrets.yml` - Access to a running pod with a service account which has cluster level rights to get secrets. 
+- `ssh-to-create-pods-multi-node.yaml`
+- `ssh-to-get-secrets.yml` - Access to a running pod with a service account which has cluster level rights to get secrets.
 - `ssrf-to-insecure-port.yml` - This cluster has a web application with an SSRF vulnerability in it, which can be exploited to target the insecure port.
 - `tiller-noauth.yml` - Tiller service configured without authentication.
 - `unauth-api-server.yml` - API Server with anonymous access possible to sensitive paths.
@@ -45,21 +48,23 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 
 ## Using the clusters
 
-Each of these can be used to try out various techniques for attacking Kubernetes clusters.  In general the goal of each exercise should be to get access to the `/etc/kubernetes/pki/ca.key` file as that's a "golden key" to persistent cluster access.
+Each of these can be used to try out various techniques for attacking Kubernetes clusters.  In general the goal of each exercise should be to get access to the `/etc/kubernetes/pki/ca.key` file as that's a ["golden key"](https://raesene.github.io/blog/2019/04/16/kubernetes-certificate-auth-golden-key/) to persistent cluster access.
 
-For each cluster the place to start is in the `Scenario Setups` which has details of how to get started.  Then if you want some information on one possible solution look in the `Scenario Walkthroughs` folder
+For each cluster the place to start is in the `Scenario Setups` which has details of how to get started.  
+
+If you want some information on one possible solution look in the `Scenario Walkthroughs` folder
 
 ## Cleanup
 
 When you're finished with your cluster(s) just use
 
-```
+```bash
 kind delete cluster --name=[CLUSTERNAME]
 ```
 
-and 
+and
 
-```
+```bash
 docker stop client
 ```
 
