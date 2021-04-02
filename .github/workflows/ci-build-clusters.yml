@@ -13,9 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: get the docker python lib
-        run: pip install docker
-      - name: Get the python 3 version
-        run: pip3 install docker
+        run: apt install -y python3-docker
       - name: Build Insecure API cluster
         run: ansible-playbook insecure-port.yml
       - name: build client container
