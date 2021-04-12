@@ -15,6 +15,15 @@ Before starting you'll need to install
 
 If you're running Ubuntu 18.04, you can use the `install_ansible_ubuntu.sh` file to do the ansible setup. If you're running Ubuntu 20.04 then you can just get ansible from apt.
 
+## Getting Started
+
+ 1. Start up the vulnerable cluster you want to use, from the list below. At the end of the playbook you'll get an IP address for the cluster.
+ 2. Start the client machine container, and exec into a shell on it
+ 3. For the SSH clusters (the playbooks start ssh-to-*) SSH into a pod on the cluster with `ssh -p 32001 sshuser@[Kubernetes Cluster IP]` and a password of `sshuser`
+ 4. Attack away :)
+
+More detailed explanations below .
+
 ## Client Machine
 
 There's a client machine with tools for Kubernetes security testing which can be brought up with the `client-machine.yml` playbook. It's best to use this client machine for all CLI tasks when running the scenarios, so you don't accidentally pick up creds from the host, but remember to start the kind cluster before the client machine, or the Docker network to connect to, may not be available.
@@ -33,7 +42,6 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 
 - `etcd-noauth.yml` - ETCD Server available without authentication
 - `insecure-port.yml` - Kubernetes API Server Insecure Port available
-- `rokubelet.yml`
 - `rwkubelet-noauth.yml` - Kubelet Read-Write Port available without authentication
 - `ssh-to-cluster-master.yml` - Access to a running pod with a service account which has cluster-admin rights.
 - `ssh-to-create-daemonsets-hard.yml`
@@ -45,6 +53,7 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 - `tiller-noauth.yml` - Tiller service configured without authentication.
 - `unauth-api-server.yml` - API Server with anonymous access possible to sensitive paths.
 - `unauth-kubernetes-dashboard.yml` - Cluster with the Kubernetes Dashboard installed and available without authentication.
+- `rokubelet.yml` - Exposed read only kubelet. This one doesn't have a compromise path ready (yet!)
 
 ## Using the clusters
 

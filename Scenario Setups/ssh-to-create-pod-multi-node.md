@@ -4,7 +4,7 @@ This cluster has an exposed SSH service running on port 32001/TCP to a pod in th
 
 - `ansible-playbook ssh-to-create-pod-multi-node.yml`
 
-Then get a note of the IP address of the worker node in the cluster by running
+Then get a note of the IP address of the worker node in the cluster by running:
 
 ```
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sshcpmn-worker

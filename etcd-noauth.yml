@@ -22,4 +22,4 @@
   tasks:
   - import_tasks: ./ansible_tasks/setup_kubeconfig.yml
   - import_tasks: ./ansible_tasks/print_cluster_ip.yml
-  - import_tasks: ./ansible_tasks/make_default_service_account_cluster_admin.yaml
+  - import_tasks: ./ansible_tasks/create_cluster_admin_service_account.yaml

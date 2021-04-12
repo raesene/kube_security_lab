@@ -3,7 +3,7 @@
 
 - `ansible-playbook insecure-port.yml`
 
-Then get a note of the IP address of the Kubernetes cluster with 
+Then get a note of the IP address of the Kubernetes cluster from the output of the ansible playbook or with 
 
 ```
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' insecureport-control-plane
