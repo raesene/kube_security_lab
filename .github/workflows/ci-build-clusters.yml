@@ -28,9 +28,9 @@ jobs:
         run: ansible-playbook rwkubelet-noauth.yml
       - name: remove rw kubelet cluster
         run: kind delete cluster --name=rwkubeletnoauth
-      - name: build ssh to cluster master cluster
-        run: ansible-playbook ssh-to-cluster-master.yml
-      - name: remove ssh to cluster master cluster
+      - name: build ssh to cluster admin cluster
+        run: ansible-playbook ssh-to-cluster-admin.yml
+      - name: remove ssh to cluster admin cluster
         run: kind delete cluster --name=sshcm
       - name: build ssh to create daemonsets
         run: ansible-playbook ssh-to-create-daemonsets-hard.yml
