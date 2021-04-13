@@ -43,7 +43,7 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 - `etcd-noauth.yml` - ETCD Server available without authentication
 - `insecure-port.yml` - Kubernetes API Server Insecure Port available
 - `rwkubelet-noauth.yml` - Kubelet Read-Write Port available without authentication
-- `ssh-to-cluster-master.yml` - Access to a running pod with a service account which has cluster-admin rights.
+- `ssh-to-cluster-admin.yml` - Access to a running pod with a service account which has cluster-admin rights.
 - `ssh-to-create-daemonsets-hard.yml`
 - `ssh-to-create-pods-easy.yml` - Access to a running pod with a service account which has rights to manage pods.
 - `ssh-to-create-pods-hard.yml` - Access to a running pod with a service account which has rights to create pods.
@@ -65,17 +65,25 @@ If you want some information on one possible solution look in the `Scenario Walk
 
 ## Cleanup
 
-When you're finished with your cluster(s) just use
+When you're finished with your cluster(s) just use:
+
+```bash
+kind get clusters
+```
+
+To get a list of running clusters, then:
 
 ```bash
 kind delete cluster --name=[CLUSTERNAME]
 ```
 
-and
+to remove the kind clusters, and:
 
 ```bash
 docker stop client
 ```
+
+to remove the client container
 
 ## Demo Setup
 

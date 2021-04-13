@@ -4,10 +4,4 @@ This cluster has the Kubernetes Dashboard available without authentication liste
 
 - `ansible-playbook unauthenticated-kubernetes-dashboard.yml`
 
-Then get a note of the IP address of the Kubernetes cluster from the output of the ansible playbook or with 
-
-```
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' kubedash-control-plane
-```
-
-Then in a browser navigate to https://[IP]:31337 and bypass the inevitable certificate warnings, to get started.
+Then in a browser navigate to https://127.0.0.1:31337 and bypass the inevitable certificate warnings, to get started.

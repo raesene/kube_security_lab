@@ -6,10 +6,11 @@
     cluster_name: kubedash
     # This needs to be the cluster name with -control-plane added 
     container_name: kubedash-control-plane
+    cluster_config: kube-dashboard.yml
     kubernetes_version: v1.18.2
 
   tasks:
-   - import_tasks: ./ansible_tasks/setup_kind_standard_config.yaml
+   - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml
 
   
 - name: Setup Cluster

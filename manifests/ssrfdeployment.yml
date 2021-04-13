@@ -18,20 +18,5 @@ spec:
         image: raesene/ssrftester
         ports:
         - containerPort: 4567
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: ssrf
-  labels: 
-    run: ssrf
-spec:
-  type: NodePort
-  selector:
-    run: ssrf
-  ports:
-  - port: 4567
-    nodePort: 32001
 
 

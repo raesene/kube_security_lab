@@ -11,15 +11,9 @@ kubeadmConfigPatches:
     name: config
   apiServer:
     extraArgs:
-      # Don't forget quotes on the values
-      insecure-bind-address: "127.0.0.1"
-      insecure-port: "8080"
-# 1 control plane node and 3 workers
 nodes:
 # the control plane node config
 - role: control-plane
   extraPortMappings:
-    - containerPort: 8080
-      hostPort: 8080
-    - containerPort: 4567
-      hostPort: 4567
+    - containerPort: 31337
+      hostPort: 31337

@@ -1,4 +1,4 @@
-## SSH to Create Pod - Easy
+## SSH to Create Pod - Multi Node
 
 ## Compromising the cluster
 

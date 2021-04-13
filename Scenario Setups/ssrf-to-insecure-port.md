@@ -10,10 +10,10 @@ Then get a note of the IP address of the Kubernetes cluster from the output of t
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ssrfinsecureport-control-plane
 ```
 
-At this point, if you're running on a Linux host, you should be able to connect to the web application on the Docker network at
+At this point, you should be able to connect to the web application on localhost as we've exposed the port with kind
 
 ```
-http://[CLUSTERIP]:32001/
+http://127.0.0.1:4567/
 ```
 
 The username is `ssrftester` and the password is `ssrftester`
