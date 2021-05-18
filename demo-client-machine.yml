@@ -11,6 +11,8 @@
       docker_container:
         name: demo-client
         image: raesene/alpine-containertools
+        networks:
+          - name: kind
     - name: add the host
       add_host: name=demo-client
 

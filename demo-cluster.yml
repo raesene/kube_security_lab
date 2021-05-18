@@ -26,4 +26,17 @@
       src: /etc/kubernetes/admin.conf
       dest: /tmp/demo-kubernetes-admin.conf
       flat: yes
+  
+  - name: cluster-admin Unauthenticated
+    command: kubectl create clusterrolebinding unauth-cluster-admin --clusterrole=cluster-admin --group=system:unauthenticated
+
+  - name: Copy Kubernetes Dasboard manifest
+    copy:
+      src: ./manifests/kubernetes-dashboard-demo.yaml
+      dest: /
+      mode: 0700
+  
+  - name: Apply Kuberntes Dashboard Manifest
+    command: kubectl create -f ./kubernetes-dashboard-demo.yaml
+
   - import_tasks: ./ansible_tasks/print_cluster_ip.yml

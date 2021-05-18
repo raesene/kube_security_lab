@@ -9,22 +9,28 @@ kubeadmConfigPatches:
   kind: ClusterConfiguration
   metadata:
     name: config
+  apiServer:
+    extraArgs:
+      # Don't forget quotes on the values
+      insecure-bind-address: "0.0.0.0"
+      insecure-port: "8080"
   etcd:
     local:
       extraArgs:
         # Don't forget quotes on values
         client-cert-auth: "false"
+- |
   kind: InitConfiguration
   nodeRegistration:
     kubeletExtraArgs:
       # These two allow for unauthenticated kubelet access
       authorization-mode: "AlwaysAllow"
       anonymous-auth: "true"
-# 1 control plane node and 3 workers
 nodes:
 # the control plane node config
 - role: control-plane
   extraPortMappings:
     - containerPort: 8080
       hostPort: 8080
-
+    - containerPort: 30000
+      hostPort: 30000
