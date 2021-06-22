@@ -4,6 +4,6 @@ metadata:
   namespace: default
   name: daemonset-creator
 rules:
-- apiGroups: [""] # "" indicates the core API group
+- apiGroups: ["apps"] # "" indicates the core API group
   resources: ["daemonsets"]
   verbs: ["get", "watch", "list", "create", "update", "patch", "delete"]
