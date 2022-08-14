@@ -4,7 +4,7 @@ The goal of this project is to make use of [Docker](https://www.docker.com) and 
 
 To get the flexibility to set-up the various vulnerable clusters we're using [Ansible](https://www.ansible.com/) playbooks.
 
-If you're want to get an idea of how this works and where to start, there's an episode of [rawkode live](https://www.youtube.com/watch?reload=9&v=Srd1qqxDReA&t=6s) where we go through it all.
+If you want to get an idea of how this works and where to start, there's an episode of [rawkode live](https://www.youtube.com/watch?reload=9&v=Srd1qqxDReA&t=6s) where we go through it all. If you run into trouble while installing the Pre-Requisites, check out [this installation guide](https://www.youtube.com/watch?v=y9PbNDdtHGo) which walks you though installing all the dependencies.
 
 ## Pre-requisites
 
