@@ -4,7 +4,7 @@ The goal of this project is to make use of [Docker](https://www.docker.com) and 
 
 To get the flexibility to set-up the various vulnerable clusters we're using [Ansible](https://www.ansible.com/) playbooks.
 
-If you're want to get an idea of how this works and where to start, there's an episode of [rawkode live](https://www.youtube.com/watch?reload=9&v=Srd1qqxDReA&t=6s) where we go through it all.
+If you want to get an idea of how this works and where to start, there's an episode of [rawkode live](https://www.youtube.com/watch?reload=9&v=Srd1qqxDReA&t=6s) where we go through it all. If you run into trouble while installing the Pre-Requisites, check out [this installation guide](https://www.youtube.com/watch?v=y9PbNDdtHGo) which walks you though installing all the dependencies.
 
 ## Pre-requisites
 
@@ -13,7 +13,9 @@ Before starting you'll need to install
 - Docker
 - Ansible
   - Also install the docker python module (e.g. `pip install docker` or `pip3 install docker`)
-- Kind 0.8.0+ - Install guide [here](https://kind.sigs.k8s.io/docs/user/quick-start/)
+- Kind 0.11.0 - Install guide [here](https://kind.sigs.k8s.io/docs/user/quick-start/)
+  -  Note: due to breaking changes in Kind v0.11.0+, currently only Kind v0.11.0 is supported
+  -  You can check your version with `kind --version`
 
 If you're running Ubuntu 18.04, you can use the `install_ansible_ubuntu.sh` file to do the ansible setup. If you're running Ubuntu 20.04 then you can just get ansible from apt.
 
