@@ -1,4 +1,4 @@
-## Unauthericated Kubernetes Dashboard
+## Unauthenticated Kubernetes Dashboard
 
 1. Starting with the login page, use the "Skip" option on the login page, which authenticates you with the default service account for the service.
 2. Now that we're logged into to the dashboard we can look for secrets which could be of use in escalating privileges to cluster-admin. As the Dashboard obviously has some good rights, it's a reasonable target.
