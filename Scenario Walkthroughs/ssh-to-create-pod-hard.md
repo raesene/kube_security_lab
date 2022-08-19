@@ -1,6 +1,9 @@
-## SSH to Create Pod - Easy
+# SSH to Create Pod - Easy
 
-## Compromising the cluster
+### Compromising the cluster
+
+This scenario begins with ssh access to a pod. The ssh credentials can be found in the scenario setup.
+
 
 1. `kubectl get po -n kube-system` will fail (user doesn't have those rights)
 2. `kubectl get po` will work and give you a list of pods in the default namespace
