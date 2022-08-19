@@ -1,4 +1,5 @@
-## SSH to Get Secrets
+# SSH to Get Secrets
+This scenario begins with ssh access to a pod. The ssh credentials can be found in the scenario setup.
 
 There are a couple of ways you can approach this one. First up (for either approach) we get secrets
 1. `kubectl get po -n kube-system` will fail (user doesn't have those rights)
