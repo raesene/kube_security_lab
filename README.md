@@ -59,7 +59,7 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 - `unauth-kubernetes-dashboard.yml` - Cluster with the Kubernetes Dashboard installed and available without authentication.
 - `rokubelet.yml` - Exposed read only kubelet. This one doesn't have a compromise path ready (yet!)
 
-If you would like to choose a random scenario to test your skills, run the `./get-random-scenario.sh` script from your project folder!
+If you would like to choose a random scenario to test your skills, run the `get-random-scenario.sh` script from your project folder!
 
 ## Using the clusters
 
