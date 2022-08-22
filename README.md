@@ -59,6 +59,8 @@ There's a number of playbooks which will bring up cluster's with a specific mis-
 - `unauth-kubernetes-dashboard.yml` - Cluster with the Kubernetes Dashboard installed and available without authentication.
 - `rokubelet.yml` - Exposed read only kubelet. This one doesn't have a compromise path ready (yet!)
 
+If you would like to choose a random scenario to test your skills, run the `./get-random-scenario.sh` script from your project folder!
+
 ## Using the clusters
 
 Each of these can be used to try out various techniques for attacking Kubernetes clusters.  In general the goal of each exercise should be to get access to the `/etc/kubernetes/pki/ca.key` file as that's a ["golden key"](https://raesene.github.io/blog/2019/04/16/kubernetes-certificate-auth-golden-key/) to persistent cluster access.
