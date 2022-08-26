@@ -1,4 +1,4 @@
-## SSH to Create Pod - Easy
+## SSH to Create Pod - Multi Node
 
 This cluster has an exposed SSH service running on port 32001/TCP to a pod in the cluster with rights to manage pods in the default namespace.  To test this run
 
