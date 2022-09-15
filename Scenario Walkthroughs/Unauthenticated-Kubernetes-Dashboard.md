@@ -9,4 +9,4 @@
    2. Choose the secrets resource for the `kubernetes-dashboard-token`
    3. click the view icon to see the value we need.
 6. Now with the token we just need to provide it to kubectl to get our `ca.key` file
-   1. kubectl --token="[TOKEN]" -shttps://[API_SERVER_IP]:6443 --insecure-skip-tls-verify -n kube-system exec kube-apiserver-kubedash-control-plane cat /etc/kubernetes/pki/ca.key
+   1. `kubectl --token="[TOKEN]" -shttps://[API_SERVER_IP]:6443 --insecure-skip-tls-verify -n kube-system exec kube-apiserver-kubedash-control-plane -- cat /etc/kubernetes/pki/ca.key`

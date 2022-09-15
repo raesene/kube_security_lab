@@ -2,7 +2,7 @@
 
 This cluster has an exposed SSH service running on port 32001/TCP to a pod in the cluster with cluster-admin rights.  To test this run
 
-- `ansible-playbook ssh-to-cluster-master.yml`
+- `ansible-playbook ssh-to-cluster-admin.yml`
 
 Then get a note of the IP address of the Kubernetes cluster from the output of the ansible playbook or with 
 
