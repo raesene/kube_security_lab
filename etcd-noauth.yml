@@ -10,7 +10,7 @@
     kubernetes_version: v1.16.9
 
   tasks:
-  - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml
+  - import_tasks: ./ansible_tasks/setup_old_kind_custom_config.yaml
   
 
 - name: Setup Cluster
