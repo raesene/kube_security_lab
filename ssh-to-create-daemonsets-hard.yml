@@ -6,7 +6,7 @@
     cluster_name: sshcdh
     # This needs to be the cluster name with -control-plane added 
     container_name: sshcdh-control-plane
-    kubernetes_version: v1.18.2
+    kubernetes_version: v1.30.0
 
   tasks:
   - import_tasks: ./ansible_tasks/setup_kind_standard_config.yaml
