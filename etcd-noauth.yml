@@ -7,10 +7,10 @@
     # This needs to be the cluster name with -control-plane added 
     container_name: etcdnoauth-control-plane
     cluster_config: etcd-noauth.yml
-    kubernetes_version: v1.16.9
+    kubernetes_version: v1.30.0
 
   tasks:
-  - import_tasks: ./ansible_tasks/setup_old_kind_custom_config.yaml
+  - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml
   
 
 - name: Setup Cluster
