@@ -19,6 +19,7 @@ kubeadmConfigPatches:
       extraArgs:
         # Don't forget quotes on values
         client-cert-auth: "false"
+        trusted-ca-file: ""
 - |
   kind: InitConfiguration
   nodeRegistration:
