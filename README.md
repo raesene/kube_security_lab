@@ -14,7 +14,6 @@ Before starting you'll need to install
 - Ansible
   - Also install the docker python module (e.g. `pip install docker` or `pip3 install docker`)
 
-If you're running Ubuntu 18.04, you can use the `install_ansible_ubuntu.sh` file to do the ansible setup. If you're running Ubuntu 20.04 then you can just get ansible from apt.
 
 ## Getting Started
 
@@ -91,3 +90,10 @@ to remove the client container
 ## Demo Setup
 
 There's a specific pair of playbooks which can be useful for demonstrating Kubernetes vulnerabilities.  the `demo-cluster.yml` brings up a kind cluster with multiple vulnerabilities and the `demo-client-machine.yml` brings up a client container with the Kubernetes Kubeconfig for the demo cluster already installed.  For this pair, it's important to bring up the cluster before the client machine, so that the kubeconfig file is available to be installed.
+
+
+## Some notes on versions
+
+Some of the exploits we're looking at do not work in the latest versions of Kubernetes, so we're using older versions. Specifically :-
+
+ - `insecure-port.yml` - Uses Kubernetes v1.19.16 which was the last version to support this option.

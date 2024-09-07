@@ -7,7 +7,7 @@
     # This needs to be the cluster name with -control-plane added 
     container_name: demo-control-plane
     cluster_config: demo.yml
-    kubernetes_version: v1.18.2
+    kubernetes_version: v1.19.16
 
   tasks:
   - import_tasks: ./ansible_tasks/setup_kind_custom_config.yaml
