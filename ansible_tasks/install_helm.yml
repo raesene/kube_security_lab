@@ -1,7 +1,7 @@
 ---
   - name: Helm Files
     get_url:
-      url: https://get.helm.sh/helm-v2.16.11-linux-amd64.tar.gz
+      url: https://get.helm.sh/helm-v2.17.0-linux-amd64.tar.gz
       dest: /tmp/helm.tar.gz
 
   - name: unzip Helm

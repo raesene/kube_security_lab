@@ -60,11 +60,3 @@ jobs:
         run: ansible-playbook ssh-to-create-pods-multi-node.yml
       - name: remove ssh to create pod multi node
         run: kind delete cluster --name=sshcpmn
-
-  build_1804:
-    runs-on: ubuntu-18.04
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Ansible on 18.04 to make sure it works
-        run: ./install_ansible_ubuntu.sh
