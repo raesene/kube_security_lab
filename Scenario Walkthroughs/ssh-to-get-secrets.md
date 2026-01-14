@@ -1,5 +1,5 @@
 # SSH to Get Secrets
-This scenario begins with ssh access to a pod. The ssh credentials can be found in the scenario setup.
+This scenario begins with ssh access to a pod. The ssh credentials can be found in the scenario setup. This scenario is relevant for older clusters where service accounts still created secrets.
 
 There are a couple of ways you can approach this one. First up (for either approach) we get secrets
 1. `kubectl get po -n kube-system` will fail (user doesn't have those rights)
