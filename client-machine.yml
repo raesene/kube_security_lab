@@ -5,9 +5,23 @@
 
 
   tasks:
-    - name: Install docker module
+    - name: Check for externally managed Python
+      stat:
+        path: "/usr/lib/python{{ ansible_python.version.major }}.{{ ansible_python.version.minor }}/EXTERNALLY-MANAGED"
+      register: externally_managed
+
+    - name: Install docker module via apt (externally managed Python)
+      apt:
+        name: python3-docker
+        state: present
+      become: yes
+      when: externally_managed.stat.exists
+
+    - name: Install docker module via pip (standard Python)
       pip:
         name: docker
+      when: not externally_managed.stat.exists
+
     - name: Start up a docker container
       docker_container:
         name: client
